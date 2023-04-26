@@ -1,7 +1,7 @@
 ### Work-In-Progress XR
 ## Immersive Social Coworking Spaces for Everyone
 
-# Authors:
+#### Authors:
 - Dulce Baerga
 - Tavius Koktavy
 - Diego Marcos
