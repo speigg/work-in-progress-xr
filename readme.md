@@ -1,5 +1,5 @@
-### Work-In-Progress XR
-## Immersive Social Coworking Spaces for Everyone
+## Work-In-Progress XR
+### Immersive Social Coworking Spaces for Everyone
 
 #### Authors:
 - Dulce Baerga
