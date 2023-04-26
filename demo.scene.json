@@ -546,6 +546,24 @@
       "parent": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC",
       "index": 8,
       "name": "entity-8"
+    },
+    "bbcf3fde-20b0-452f-a5f9-a543e783d498": {
+      "components": [
+        {
+          "name": "system",
+          "props": {
+            "filePath": "__$project$__/work-in-progress-xr/src/systems/GrabbableScreenshareSystem.ts",
+            "insertUUID": "ee.engine.input-group",
+            "insertOrder": "after",
+            "enableClient": true,
+            "enableServer": true,
+            "args": {}
+          }
+        }
+      ],
+      "parent": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC",
+      "index": 9,
+      "name": "Grabbable Screenshare System"
     }
   },
   "root": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC"
