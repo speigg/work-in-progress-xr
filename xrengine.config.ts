@@ -5,8 +5,7 @@ const config: ProjectConfigInterface = {
   thumbnail: '/static/etherealengine.png',
   routes: {},
   services: undefined,
-  databaseSeed: undefined,
-  worldInjection: () => import('./src/worldInjection'),
+  databaseSeed: undefined
 }
 
 export default config
