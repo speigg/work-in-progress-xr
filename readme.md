@@ -1,3 +1,8 @@
-### Ethereal Engine Project
+### Work-In-Progress XR
+## Immersive Social Coworking Spaces for Everyone
 
-This is the Ethereal Engine default project. It contains some basic starter assets, avatars and scenes.
+Authors:
+Dulce Baerga
+Tavius Koktavy
+Diego Marcos
+Gheric Speiginer
