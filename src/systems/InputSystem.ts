@@ -1,15 +1,32 @@
 import { defineSystem, QueryReactor } from "@etherealengine/engine/src/ecs/functions/SystemFunctions"
-import { defineComponent, defineQuery, getComponent, removeComponent, setComponent, useComponent } from "@etherealengine/engine/src/ecs/functions/ComponentFunctions"
+import { defineComponent, defineQuery, getComponent, getMutableComponent, removeComponent, setComponent, useComponent } from "@etherealengine/engine/src/ecs/functions/ComponentFunctions"
 import { InputComponent } from "@etherealengine/engine/src/input/components/InputComponent"
 import { InputSourceComponent } from "@etherealengine/engine/src/input/components/InputSourceComponent"
 import { BoundingBoxComponent } from "@etherealengine/engine/src/interaction/components/BoundingBoxComponents"
 import { GrabbableComponent } from "../GrabbableComponent"
 import { NameComponent } from "@etherealengine/engine/src/scene/components/NameComponent"
 import { LocalTransformComponent } from "@etherealengine/engine/src/transform/components/TransformComponent"
+import { addObjectToGroup } from "@etherealengine/engine/src/scene/components/GroupComponent"
+import { Color, Mesh, MeshBasicMaterial, SphereGeometry } from "three"
 
 const namedObjects = defineQuery([NameComponent])
-
 const grabbables = defineQuery([GrabbableComponent, InputComponent])
+const inputSources = defineQuery([InputSourceComponent])
+
+const sphereGeometry = new SphereGeometry(0.1, 32, 32)
+const color = new Color
+
+const InteractionIndicatorComponent = defineComponent({
+  name: 'InteractionIndicatorComponent',
+  onInit: () => {
+    return {
+      sphereMaterial: new MeshBasicMaterial({color: 'lightgray'})
+    }
+  },
+  onSet: (eid, component) => {
+    addObjectToGroup(eid, new Mesh(sphereGeometry, component.sphereMaterial.value))
+  }
+})
 
 const execute = () => {
 
@@ -18,6 +35,18 @@ const execute = () => {
     if (name.endsWith('Grabbable')) {
       setComponent(eid, GrabbableComponent)
     }
+  }
+
+  for (const eid of inputSources.enter()) {
+    setComponent(eid, InteractionIndicatorComponent)
+  }
+
+  for (const eid of inputSources()) {
+    const inputSource = getComponent(eid, InputSourceComponent)
+    const isActive = inputSource.assignedEntity
+    const indicator = getComponent(eid, InteractionIndicatorComponent)
+    const targetColor = color.set(isActive ? 'lightgreen' : 'lightgray')
+    indicator.sphereMaterial.color.lerp(targetColor, 0.1)
   }
 
   for (const eid of grabbables()) {
