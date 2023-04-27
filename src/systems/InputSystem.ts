@@ -31,54 +31,55 @@ export default defineSystem({
       const leftHand = createEntity()
       const box = createEntity()
       addObjectToGroup(box, new Mesh(new BoxGeometry(), new MeshBasicMaterial()))
-      // setComponent(box, )
+
       setComponent(box, TransformComponent)
       getComponent(box, TransformComponent).position.set(0, 1.6, -1);
       setComponent(box, VisibleComponent, true)
       setComponent(box, NameComponent, 'BOX')
+      setComponent(box, ColliderComponent, {isTrigger: true})
 
-      // const setupHand = (targetHand: Entity, targetHandDynamic: Entity) => {
-      //   const handFixed = Physics.createRigidBody(
-      //     targetHand,
-      //     Engine.instance.physicsWorld,
-      //     RigidBodyDesc.kinematicPositionBased(),
-      //     []
-      //   )
-      //   setComponent(targetHand, NameComponent, targetHandDynamic === rightHandDynamic ? 'Right' : 'Left' + 'Hand Kinematic')
-      //   setComponent(targetHand, TransformComponent)
+      const setupHand = (targetHand: Entity, targetHandDynamic: Entity) => {
+        const handFixed = Physics.createRigidBody(
+          targetHand,
+          Engine.instance.physicsWorld,
+          RigidBodyDesc.kinematicPositionBased(),
+          []
+        )
+        setComponent(targetHand, NameComponent, targetHandDynamic === rightHandDynamic ? 'Right' : 'Left' + 'Hand Kinematic')
+        setComponent(targetHand, TransformComponent)
 
-      //   const kinematicBody = getComponent(targetHand, RigidBodyComponent)
-      //   kinematicBody.targetKinematicLerpMultiplier = 50
+        const kinematicBody = getComponent(targetHand, RigidBodyComponent)
+        kinematicBody.targetKinematicLerpMultiplier = 50
 
-      //   const handColliderDesc = ColliderDesc.ball(0.1)
-      //   const handInteractionGroups = getInteractionGroups(BubbleCollisionGroups.Hand, BubbleCollisionGroups.Bubble)
-      //   handColliderDesc.setCollisionGroups(handInteractionGroups)
-      //   handColliderDesc.setActiveCollisionTypes(ActiveCollisionTypes.ALL)
-      //   handColliderDesc.setActiveEvents(ActiveEvents.COLLISION_EVENTS | ActiveEvents.CONTACT_FORCE_EVENTS)
-      //   handColliderDesc.setMass(0.5)
+        const handColliderDesc = ColliderDesc.ball(0.1)
+        const handInteractionGroups = getInteractionGroups(BubbleCollisionGroups.Hand, BubbleCollisionGroups.Bubble)
+        handColliderDesc.setCollisionGroups(handInteractionGroups)
+        handColliderDesc.setActiveCollisionTypes(ActiveCollisionTypes.ALL)
+        handColliderDesc.setActiveEvents(ActiveEvents.COLLISION_EVENTS | ActiveEvents.CONTACT_FORCE_EVENTS)
+        handColliderDesc.setMass(0.5)
 
-      //   const handDynamic = Physics.createRigidBody(
-      //     targetHandDynamic,
-      //     Engine.instance.physicsWorld,
-      //     RigidBodyDesc.dynamic(),
-      //     [handColliderDesc]
-      //   )
-      //   setComponent(targetHandDynamic, NameComponent, targetHandDynamic === rightHandDynamic ? 'Right' : 'Left' + 'Hand Dynamic')
-      //   setComponent(targetHandDynamic, TransformComponent)
-      //   handDynamic.enableCcd(true)
-      //   setComponent(targetHandDynamic, CollisionComponent)
-      //   const handToDynamicJointData = JointData.fixed(
-      //     { x: 0.0, y: 0.0, z: 0.0 },
-      //     { w: 1.0, x: 0.0, y: 0.0, z: 0.0 },
-      //     { x: 0.0, y: 0.0, z: 0.0 },
-      //     { w: 1.0, x: 0.0, y: 0.0, z: 0.0 }
-      //   )
-      //   Engine.instance.physicsWorld.createImpulseJoint(handToDynamicJointData, handFixed, handDynamic, true)
-      // }
-      // setupHand(leftHand)
-      // setupHand(leftRight)
-      // setupHand(leftHandDynamic)
-      // setupHand(rightHandDynamic)
+        const handDynamic = Physics.createRigidBody(
+          targetHandDynamic,
+          Engine.instance.physicsWorld,
+          RigidBodyDesc.dynamic(),
+          [handColliderDesc]
+        )
+        setComponent(targetHandDynamic, NameComponent, targetHandDynamic === rightHandDynamic ? 'Right' : 'Left' + 'Hand Dynamic')
+        setComponent(targetHandDynamic, TransformComponent)
+        handDynamic.enableCcd(true)
+        setComponent(targetHandDynamic, CollisionComponent)
+        const handToDynamicJointData = JointData.fixed(
+          { x: 0.0, y: 0.0, z: 0.0 },
+          { w: 1.0, x: 0.0, y: 0.0, z: 0.0 },
+          { x: 0.0, y: 0.0, z: 0.0 },
+          { w: 1.0, x: 0.0, y: 0.0, z: 0.0 }
+        )
+        Engine.instance.physicsWorld.createImpulseJoint(handToDynamicJointData, handFixed, handDynamic, true)
+      }
+      setupHand(leftHand)
+      setupHand(leftRight)
+      setupHand(leftHandDynamic)
+      setupHand(rightHandDynamic)
       return () => {
         // cleanup
       }
