@@ -35,6 +35,7 @@ export default defineSystem({
       setComponent(box, TransformComponent)
       getComponent(box, TransformComponent).position.set(0, 1.6, -1);
       setComponent(box, VisibleComponent, true)
+      setComponent(box, NameComponent, 'BOX')
 
       // const setupHand = (targetHand: Entity, targetHandDynamic: Entity) => {
       //   const handFixed = Physics.createRigidBody(
