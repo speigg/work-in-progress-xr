@@ -7,14 +7,17 @@ import { RigidBodyComponent } from '@etherealengine/engine/src/physics/component
 import { Physics } from '@etherealengine/engine/src/physics/classes/Physics'
 import { Collider, ColliderDesc, RigidBodyDesc } from '@dimforge/rapier3d-compat'
 import { NameComponent } from '@etherealengine/engine/src/scene/components/NameComponent'
-import { MeshBasicMaterial, BoxGeometry} from "three"
+import { MeshBasicMaterial, BoxGeometry, Mesh} from "three"
 import { useEffect } from 'react'
+import { createEntity } from "@etherealengine/engine/src/ecs/functions/EntityFunctions"
+import { getComponent, setComponent } from "@etherealengine/engine/src/ecs/functions/ComponentFunctions"
+import { addObjectToGroup } from "@etherealengine/engine/src/scene/components/GroupComponent"
 
 const execute = () => {
-  debugger;
-  if (keys.KeyK?.down) { console.log("Key K") }
-  if (keys.KeyI?.down)  { console.log("Key I") }
-  if (keys.ButtonB?.down)  { console.log("Button B") }
+  const buttons = Engine.instance.buttons
+  if (buttons.KeyK?.down) { console.log("Key K") }
+  if (buttons.KeyI?.down)  { console.log("Key I") }
+  if (buttons.ButtonB?.down)  { console.log("Button B") }
 }
 
 export default defineSystem({
@@ -22,15 +25,13 @@ export default defineSystem({
   execute,
   reactor: () => { 
     useEffect (() => {
-      debugger;
       const rightHandDynamic = createEntity()
       const rightHand = createEntity()
       const leftHandDynamic = createEntity()
       const leftHand = createEntity()
-      debugger;
       const box = createEntity()
-      addObjectToGroup(box, new THREE.Mesh(new BoxGeometry(), new MeshBasicMaterial()))
-      setComponent(box, )
+      addObjectToGroup(box, new Mesh(new BoxGeometry(), new MeshBasicMaterial()))
+      // setComponent(box, )
       setComponent(box, TransformComponent)
       getComponent(box, TransformComponent).position.set(0, 1.6, -1);
       setComponent(box, VisibleComponent, true)
