@@ -4,11 +4,21 @@ import { InputComponent } from "@etherealengine/engine/src/input/components/Inpu
 import { InputSourceComponent } from "@etherealengine/engine/src/input/components/InputSourceComponent"
 import { BoundingBoxComponent } from "@etherealengine/engine/src/interaction/components/BoundingBoxComponents"
 import { GrabbableComponent } from "../GrabbableComponent"
+import { NameComponent } from "@etherealengine/engine/src/scene/components/NameComponent"
 
+const namedObjects = defineQuery([NameComponent])
 
 const grabbables = defineQuery([GrabbableComponent, InputComponent])
 
 const execute = () => {
+
+  for (const eid of namedObjects.enter()) {
+    const name = getComponent(eid, NameComponent)
+    if (name.endsWith('Grabbable')) {
+      setComponent(eid, GrabbableComponent)
+    }
+  }
+
   for (const eid of grabbables()) {
     const input = getComponent(eid, InputComponent)
     const inputSources = input.inputSources.map((eid) => getComponent(eid, InputSourceComponent))

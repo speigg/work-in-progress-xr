@@ -663,7 +663,9 @@
           "name": "gltf-model",
           "props": {
             "src": "__$project$__/work-in-progress-xr/assets/polycam-scan-2_optimized.glb",
-            "resource": null,
+            "resource": {
+              "src": "__$project$__/work-in-progress-xr/assets/polycam-scan-2_optimized.glb"
+            },
             "generateBVH": true,
             "avoidCameraOcclusion": false
           }
@@ -755,7 +757,7 @@
       ],
       "parent": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC",
       "index": 12,
-      "name": "Demo Space Mini"
+      "name": "Demo Space Grabbable"
     }
   },
   "root": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC"
