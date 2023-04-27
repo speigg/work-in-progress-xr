@@ -612,7 +612,7 @@
         {
           "name": "system",
           "props": {
-            "filePath": "__$project$__/work-in-progress-xr/src/systems/InputSystem.tsx",
+            "filePath": "__$project$__/work-in-progress-xr/src/systems/InputSystem.ts",
             "insertUUID": "ee.engine.input-group",
             "insertOrder": "after",
             "enableClient": true,
