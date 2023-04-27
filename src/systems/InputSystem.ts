@@ -24,7 +24,7 @@ const execute = () => {
     const inputSources = input.inputSources.map((eid) => getComponent(eid, InputSourceComponent))
     
     for (const inputSource of inputSources) {
-      if (inputSource.buttons.LeftTrigger?.down || inputSource.buttons.RightTrigger?.down) {
+      if (inputSource.buttons.Trigger?.down) {
         console.log('grabbing')
       }
     }
