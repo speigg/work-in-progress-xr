@@ -649,10 +649,6 @@
           }
         },
         {
-          "name": "visible",
-          "props": {}
-        },
-        {
           "name": "shadow",
           "props": {
             "cast": true,
