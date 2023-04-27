@@ -1,13 +1,13 @@
-import { defineSystem, QueryReactor } from "@etherealengine/engine/src/ecs/functions/SystemFunctions"
-import { defineComponent, defineQuery, getComponent, getMutableComponent, removeComponent, setComponent, useComponent } from "@etherealengine/engine/src/ecs/functions/ComponentFunctions"
+import { defineSystem } from "@etherealengine/engine/src/ecs/functions/SystemFunctions"
+import { defineComponent, defineQuery, getComponent, removeComponent, setComponent } from "@etherealengine/engine/src/ecs/functions/ComponentFunctions"
 import { InputComponent } from "@etherealengine/engine/src/input/components/InputComponent"
 import { InputSourceComponent } from "@etherealengine/engine/src/input/components/InputSourceComponent"
-import { BoundingBoxComponent } from "@etherealengine/engine/src/interaction/components/BoundingBoxComponents"
 import { GrabbableComponent } from "../GrabbableComponent"
 import { NameComponent } from "@etherealengine/engine/src/scene/components/NameComponent"
 import { LocalTransformComponent } from "@etherealengine/engine/src/transform/components/TransformComponent"
 import { addObjectToGroup } from "@etherealengine/engine/src/scene/components/GroupComponent"
 import { Color, Mesh, MeshBasicMaterial, SphereGeometry } from "three"
+import { VisibleComponent } from "@etherealengine/engine/src/scene/components/VisibleComponent"
 
 const namedObjects = defineQuery([NameComponent])
 const grabbables = defineQuery([GrabbableComponent, InputComponent])
@@ -20,11 +20,12 @@ const InteractionIndicatorComponent = defineComponent({
   name: 'InteractionIndicatorComponent',
   onInit: () => {
     return {
-      sphereMaterial: new MeshBasicMaterial({color: 'lightgray'})
+      sphereMaterial: new MeshBasicMaterial({color: 'lightgray', transparent: true, opacity: 0.5})
     }
   },
   onSet: (eid, component) => {
     addObjectToGroup(eid, new Mesh(sphereGeometry, component.sphereMaterial.value))
+    setComponent(eid, VisibleComponent)
   }
 })
 
@@ -37,9 +38,7 @@ const execute = () => {
     }
   }
 
-  for (const eid of inputSources.enter()) {
-    setComponent(eid, InteractionIndicatorComponent)
-  }
+  for (const eid of inputSources.enter()) setComponent(eid, InteractionIndicatorComponent)
 
   for (const eid of inputSources()) {
     const inputSource = getComponent(eid, InputSourceComponent)
