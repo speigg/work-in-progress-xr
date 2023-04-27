@@ -64,15 +64,20 @@ const execute = () => {
     for (const sourceEid of input.inputSources) {
       const inputSource = getComponent(sourceEid, InputSourceComponent)
       if (inputSource.source.gamepad?.buttons[0].pressed || inputSource.source.gamepad?.buttons[1].pressed) {
-        setComponent(eid, ComputedTransformComponent, {referenceEntity: sourceEid, computeFunction:followInputSource })
+        // setComponent(eid, ComputedTransformComponent, {referenceEntity: sourceEid, computeFunction:followInputSource })
+        const worldTransformScale = getComponent(eid, TransformComponent).scale
+        setComponent(eid, LocalTransformComponent, {parentEntity: sourceEid, scale: worldTransformScale})
         const indicator = getComponent(sourceEid, InteractionIndicatorComponent)
         const targetColor = color.set('red')
         indicator.sphereMaterial.color.set(targetColor)
       } else {
-        removeComponent(eid, ComputedTransformComponent)
+        // removeComponent(eid, ComputedTransformComponent)
+        removeComponent(eid, LocalTransformComponent)
       }
     }
-    if (input.inputSources.length === 0) removeComponent(eid, ComputedTransformComponent)
+    if (input.inputSources.length === 0) removeComponent(eid, LocalTransformComponent) // removeComponent(eid, ComputedTransformComponent)
+
+    
   }
 }
 
