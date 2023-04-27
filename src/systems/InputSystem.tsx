@@ -2,14 +2,9 @@ import { defineSystem, QueryReactor } from "@etherealengine/engine/src/ecs/funct
 import { defineComponent, defineQuery, getComponent, setComponent, useComponent } from "@etherealengine/engine/src/ecs/functions/ComponentFunctions"
 import { InputComponent } from "@etherealengine/engine/src/input/components/InputComponent"
 import { InputSourceComponent } from "@etherealengine/engine/src/input/components/InputSourceComponent"
+import { BoundingBoxComponent } from "@etherealengine/engine/src/interaction/components/BoundingBoxComponents"
+import { GrabbableComponent } from "../GrabbableComponent"
 
-const GrabbableComponent = defineComponent({
-  name: 'GrabbableComponent',
-  onInit: (eid) => {
-    setComponent(eid, InputComponent)
-    return true
-  }
-})
 
 const grabbables = defineQuery([GrabbableComponent, InputComponent])
 

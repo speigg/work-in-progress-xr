@@ -589,9 +589,30 @@
     "9faeec2d-bf98-47a1-8015-400c05e9812e": {
       "components": [
         {
+          "name": "transform",
+          "props": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        },
+        {
           "name": "system",
           "props": {
-            "filePath": "__$project$__/work-in-progress-xr/src/systems/InputSystem.ts",
+            "filePath": "__$project$__/work-in-progress-xr/src/systems/InputSystem.tsx",
             "insertUUID": "ee.engine.input-group",
             "insertOrder": "after",
             "enableClient": true,
@@ -603,6 +624,138 @@
       "parent": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC",
       "index": 10,
       "name": "WIP Input System"
+    },
+    "07111111-1a28-44ba-9491-6501cf155a53": {
+      "components": [
+        {
+          "name": "transform",
+          "props": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        },
+        {
+          "name": "visible",
+          "props": {}
+        },
+        {
+          "name": "shadow",
+          "props": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        {
+          "name": "gltf-model",
+          "props": {
+            "src": "__$project$__/work-in-progress-xr/assets/polycam-scan-2_optimized.glb",
+            "resource": null,
+            "generateBVH": true,
+            "avoidCameraOcclusion": false
+          }
+        },
+        {
+          "name": "envmap",
+          "props": {
+            "type": "None",
+            "envMapTextureType": "Equirectangular",
+            "envMapSourceColor": 4095,
+            "envMapSourceURL": "",
+            "envMapIntensity": 1
+          }
+        },
+        {
+          "name": "loop-animation",
+          "props": {
+            "activeClipIndex": -1,
+            "hasAvatarAnimations": false
+          }
+        }
+      ],
+      "parent": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC",
+      "index": 11,
+      "name": "Demo Space"
+    },
+    "undefined": {
+      "components": [
+        {
+          "name": "transform",
+          "props": {
+            "position": {
+              "x": -0.3907841335396218,
+              "y": 0.12104489019741135,
+              "z": -0.3485100020604644
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "scale": {
+              "x": 0.08000000000000007,
+              "y": 0.08000000000000007,
+              "z": 0.08000000000000007
+            }
+          }
+        },
+        {
+          "name": "visible",
+          "props": {}
+        },
+        {
+          "name": "shadow",
+          "props": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        {
+          "name": "gltf-model",
+          "props": {
+            "src": "__$project$__/work-in-progress-xr/assets/polycam-scan-2_optimized.glb",
+            "resource": {
+              "src": "__$project$__/work-in-progress-xr/assets/polycam-scan-2_optimized.glb"
+            },
+            "generateBVH": true,
+            "avoidCameraOcclusion": false
+          }
+        },
+        {
+          "name": "envmap",
+          "props": {
+            "type": "None",
+            "envMapTextureType": "Equirectangular",
+            "envMapSourceColor": 4095,
+            "envMapSourceURL": "",
+            "envMapIntensity": 1
+          }
+        },
+        {
+          "name": "loop-animation",
+          "props": {
+            "activeClipIndex": -1,
+            "hasAvatarAnimations": false
+          }
+        }
+      ],
+      "parent": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC",
+      "index": 12,
+      "name": "Demo Space Mini"
     }
   },
   "root": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC"
