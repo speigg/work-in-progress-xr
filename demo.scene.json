@@ -550,6 +550,27 @@
     "bbcf3fde-20b0-452f-a5f9-a543e783d498": {
       "components": [
         {
+          "name": "transform",
+          "props": {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        },
+        {
           "name": "system",
           "props": {
             "filePath": "__$project$__/work-in-progress-xr/src/systems/GrabbableScreenshareSystem.ts",
@@ -564,6 +585,24 @@
       "parent": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC",
       "index": 9,
       "name": "Grabbable Screenshare System"
+    },
+    "9faeec2d-bf98-47a1-8015-400c05e9812e": {
+      "components": [
+        {
+          "name": "system",
+          "props": {
+            "filePath": "__$project$__/work-in-progress-xr/src/systems/InputSystem.ts",
+            "insertUUID": "ee.engine.input-group",
+            "insertOrder": "after",
+            "enableClient": true,
+            "enableServer": true,
+            "args": {}
+          }
+        }
+      ],
+      "parent": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC",
+      "index": 10,
+      "name": "WIP Input System"
     }
   },
   "root": "2266BED7-6CC4-48A6-95DD-9BCD3CF9EAFC"
